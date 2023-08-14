@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
     trim: true,
     minLength: [6, "min length is 6 charcters"],
   },
-  avatar: {
+  pic: {
     type: String,
     default:
       "https://www.esadealumni.net/sites/default/files/styles/detail_modal_autoheight/public/equipo/2023-02/AvatarNotFound_30_7_1.png?itok=1_XIAV4e",

@@ -17,7 +17,7 @@ const Signup = () => {
   const [email, setEmail] = useState();
   const [confirmpassword, setConfirmpassword] = useState();
   const [password, setPassword] = useState();
-  const [avatar, setPic] = useState();
+  const [pic, setPic] = useState();
   const [picLoading, setPicLoading] = useState(false);
 
   const submitHandler = async () => {
@@ -43,7 +43,7 @@ const Signup = () => {
       });
       return;
     }
-    console.log(name, email, password, avatar);
+    console.log(name, email, password, pic);
     try {
       const config = {
         headers: {
@@ -51,12 +51,12 @@ const Signup = () => {
         },
       };
       const { data } = await axios.post(
-        "/api/v1/auth/",
+        "/api/v1/auth/signup",
         {
           name,
           email,
           password,
-          avatar,
+          pic,
         },
         config
       );
@@ -176,7 +176,7 @@ const Signup = () => {
           </InputRightElement>
         </InputGroup>
       </FormControl>
-      <FormControl id="avatar">
+      <FormControl id="pic">
         <FormLabel>Upload your Picture</FormLabel>
         <Input
           type="file"

@@ -4,13 +4,16 @@ const dotenv = require('dotenv');
 dotenv.config({ path: ".env" });
 const DB = require("./config/database.js").apply();
 const errorMiddleware = require('./middlewares/errorMiddleware.js');
-const authRoute = require('./routes/authRoute.js');
+const ApiError = require('./utils/apiError.js');
 
+const authRoute = require('./routes/authRoute.js');
+const chatsRoute = require('./routes/chatRoute.js');
 
 app.use(express.json());
 
 //routes
 app.use('/api/v1/auth', authRoute);
+app.use('/api/v1/chats', chatsRoute);
 
 
 app.all("*", (req, res, next) => {

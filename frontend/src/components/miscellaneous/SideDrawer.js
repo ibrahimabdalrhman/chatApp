@@ -77,7 +77,10 @@ function SideDrawer() {
         },
       };
 
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(
+        `/api/v1/auth/users?search=${search}`,
+        config
+      );
 
       setLoading(false);
       setSearchResult(data);
@@ -104,9 +107,10 @@ function SideDrawer() {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.post(`/api/chat`, { userId }, config);
+      const { data } = await axios.post(`/api/v1/chats`, { userId }, config);
 
-      if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
+      if (!chats.find((c) => c._id === data._id))
+        setChats([data, ...chats]);
       setSelectedChat(data);
       setLoadingChat(false);
       onClose();
@@ -198,7 +202,7 @@ function SideDrawer() {
             <Box d="flex" pb={2}>
               <Input
                 placeholder="Search by name or email"
-                mr={2}
+                mr={5}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />

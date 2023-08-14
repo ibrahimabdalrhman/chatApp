@@ -46,10 +46,13 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
           Authorization: `Bearer ${user.token}`,
         },
       };
-      const { data } = await axios.get(`/api/user?search=${search}`, config);
+      const { data } = await axios.get(
+        `/api/v1/auth/users?search=${search}`,
+        config
+      );
       console.log(data);
       setLoading(false);
-      setSearchResult(data);
+      setSearchResult(data.users);
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -74,7 +77,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         },
       };
       const { data } = await axios.put(
-        `/api/chat/rename`,
+        `/api/v1/chats/rename-group`,
         {
           chatId: selectedChat._id,
           chatName: groupChatName,
@@ -132,7 +135,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         },
       };
       const { data } = await axios.put(
-        `/api/chat/groupadd`,
+        `/api/v1/chats/add-to-group`,
         {
           chatId: selectedChat._id,
           userId: user1._id,
@@ -177,7 +180,7 @@ const UpdateGroupChatModal = ({ fetchMessages, fetchAgain, setFetchAgain }) => {
         },
       };
       const { data } = await axios.put(
-        `/api/chat/groupremove`,
+        `/api/v1/chats/remove-from-group`,
         {
           chatId: selectedChat._id,
           userId: user1._id,
