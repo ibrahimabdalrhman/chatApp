@@ -54,8 +54,6 @@ exports.allUsers = asyncHandler(async (req, res, next) => {
   
 });
 
-
-
 //to check if user loggedin
 exports.auth = asyncHandler(async (req, res, next) => {
   
@@ -84,4 +82,15 @@ exports.auth = asyncHandler(async (req, res, next) => {
   }
 });
 
+exports.forgetPassword = asyncHandler(async (req, res, next) => {
+  
+  const { userId, password, configPassword } = req.body;
+
+  const user = await User.find();
+  res.status(201).json({
+    status: 'success',
+    data: user.password
+  });
+
+});
 
